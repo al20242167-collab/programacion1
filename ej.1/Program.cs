@@ -9,45 +9,48 @@ using System.Net.Mail;
 Random rndVida = new Random();
 int    vida    = rndVida.Next(100,200);
 int    vidaMax = 200;
+int    vida2   = rndVida.Next(100,200);
 
-Random rndCura = new Random();
-int    cura    = rndVida.Next(1,50);
-
-Random rndAtaque = new Random();
-int    ataque    = rndAtaque.Next(1,50);
-
-int  vida2   = rndVida.Next(100,200);
-int ataque2 = rndAtaque.Next(1,50);
-
-
-Console.WriteLine("Jugador 1");
-
-Console.WriteLine("Vida: " + vida);
-Console.WriteLine("Ataque: " + ataque);
-
-Console.WriteLine("\n");
-
-Console.WriteLine("Jugador 2");
-
-Console.WriteLine("Vida: " + vida2);
-Console.WriteLine("Ataque: " + ataque2);
-
+Random rndElecc          = new Random();
 Random rndJugadores      = new Random();
-int    jugadoresEleccion = rndAtaque.Next(1,3);
+int    jugadoresEleccion = rndElecc.Next(1,3);
 
 if (jugadoresEleccion == 1) // Inicia Jugador 2
 {
     do
     {
+        Random rndCura = new Random();
+        int    cura    = rndVida.Next(1,50);
+
+        Random rndAtaque = new Random();
+        int    ataque    = rndAtaque.Next(1,50);
+
+        int ataque2 = rndAtaque.Next(1,50);
+
+
+        Console.WriteLine("Jugador 1");
+
+        Console.WriteLine("Vida: " + vida);
+        Console.WriteLine("Ataque: " + ataque);
+
+        Console.WriteLine("\n");
+
+        Console.WriteLine("Jugador 2");
+
+        Console.WriteLine("Vida: " + vida2);
+        Console.WriteLine("Ataque: " + ataque2);
+
         Random rndJugador2      = new Random();
-        int    jugador2Eleccion = rndAtaque.Next(1, 3);
+        int    jugador2Eleccion = rndElecc.Next(1, 3);
 
         if (jugador2Eleccion == 1) // Decicion 1 jugador 2
         {
+            Console.WriteLine("\n");
             Console.WriteLine("Te curas: " + cura);
             vida2 = Math.Min(vidaMax, vida2 + cura);
-            Console.WriteLine("Vida: " + vida2);
+            Console.WriteLine("Vida Jugador2: " + vida2);
 
+            Console.WriteLine("\n");
             Console.WriteLine("1 si quieres curarte, 2 si quieres Atacar"); //Toma decicion Jugador 1
             string Decicion = Console.ReadLine();
 
@@ -62,6 +65,7 @@ if (jugadoresEleccion == 1) // Inicia Jugador 2
                 {
                     if (decicionINT == 1) // Decicion 1 jugador 1
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Te curas: " + cura);
                         vida = Math.Min(vidaMax, vida + cura);
                         Console.WriteLine("Vida: " + vida);
@@ -69,6 +73,7 @@ if (jugadoresEleccion == 1) // Inicia Jugador 2
 
                     if (decicionINT == 2) // Decicion 2 jugador 1
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Ataque " + ataque);
                         vida2 = vida2 - ataque;
                         Console.WriteLine("Vida Jugador2: " + vida2);
@@ -83,10 +88,12 @@ if (jugadoresEleccion == 1) // Inicia Jugador 2
 
         if (jugador2Eleccion == 2) // Decicion 2 jugador 2
         {
+            Console.WriteLine("\n");
             Console.WriteLine("Ataque: " + ataque2);
-            vida = vida + ataque2;
-            Console.WriteLine("Vida: " + vida);
+            vida = vida - ataque2;
+            Console.WriteLine("Vida Jugador1: " + vida);
 
+            Console.WriteLine("\n");
             Console.WriteLine("1 si quieres curarte, 2 si quieres Atacar"); //Toma decicion Jugador 1
             string Decicion = Console.ReadLine();
 
@@ -101,13 +108,15 @@ if (jugadoresEleccion == 1) // Inicia Jugador 2
                 {
                     if (decicionINT == 1) // Decicion 1 jugador 1
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Te curas: " + cura);
-                        vida = vida + cura;
+                        vida = Math.Min(vidaMax, vida + cura);
                         Console.WriteLine("Vida: " + vida);
                     }
 
                     if (decicionINT == 2) // Decicion 2 jugador 1
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Ataque " + ataque);
                         vida2 = vida2 - ataque;
                         Console.WriteLine("Vida Jugador2: " + vida2);
@@ -128,9 +137,31 @@ if (jugadoresEleccion == 2) // Inicia Jugador 2
 {
     do
     {
+        Random rndCura = new Random();
+        int    cura    = rndVida.Next(1,50);
+
+        Random rndAtaque = new Random();
+        int    ataque    = rndAtaque.Next(1,50);
+
+        int ataque2 = rndAtaque.Next(1,50);
+
+
+        Console.WriteLine("Jugador 1");
+
+        Console.WriteLine("Vida: " + vida);
+        Console.WriteLine("Ataque: " + ataque);
+
+        Console.WriteLine("\n");
+
+        Console.WriteLine("Jugador 2");
+
+        Console.WriteLine("Vida: " + vida2);
+        Console.WriteLine("Ataque: " + ataque2);
+
         Random rndJugador2      = new Random();
         int    jugador2Eleccion = rndAtaque.Next(1, 3);
 
+        Console.WriteLine("\n");
         Console.WriteLine("1 si quieres curarte, 2 si quieres Atacar"); //Toma decicion Jugador 1
         string Decicion = Console.ReadLine();
 
@@ -145,43 +176,49 @@ if (jugadoresEleccion == 2) // Inicia Jugador 2
             {
                 if (decicionINT == 1) // Decicion 1 jugador 1
                 {
+                    Console.WriteLine("\n");
                     Console.WriteLine("Te curas: " + cura);
-                    vida = vida + cura;
-                    Console.WriteLine("Vida: " + vida);
+                    vida = Math.Min(vidaMax, vida + cura);
+                    Console.WriteLine("Vida jugador1: " + vida);
 
                     if (jugador2Eleccion == 1) // Decicion 1 jugador 2
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Te curas: " + cura);
                         vida2 = Math.Min(vidaMax, vida2 + cura);
-                        Console.WriteLine("Vida: " + vida2);
+                        Console.WriteLine("Vida Jugador2: " + vida2);
                     }
 
                     if (jugador2Eleccion == 2) // Decicion 2 jugador 2
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Ataque: " + ataque2);
                         vida = vida + ataque2;
-                        Console.WriteLine("Vida: " + vida);
+                        Console.WriteLine("Vida Jugador1: " + vida);
                     }
                 }
 
                 if (decicionINT == 2) // Decicion 2 jugador 1
                 {
+                    Console.WriteLine("\n");
                     Console.WriteLine("Ataque " + ataque);
                     vida2 = vida2 - ataque;
                     Console.WriteLine("Vida Jugador2: " + vida2);
 
                     if (jugador2Eleccion == 1) // Decicion 1 jugador 2
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Te curas: " + cura);
                         vida2 = Math.Min(vidaMax, vida2 + cura);
-                        Console.WriteLine("Vida: " + vida2);
+                        Console.WriteLine("Vida Jugador2: " + vida2);
                     }
 
                     if (jugador2Eleccion == 2) // Decicion 2 jugador 2
                     {
+                        Console.WriteLine("\n");
                         Console.WriteLine("Ataque: " + ataque2);
                         vida = vida + ataque2;
-                        Console.WriteLine("Vida: " + vida);
+                        Console.WriteLine("Vida Jugador1: " + vida);
                     }
                 }
             }
