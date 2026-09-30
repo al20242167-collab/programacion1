@@ -18,7 +18,7 @@
  * - En lugar de mostrar únicamente si el jugador llegó o no al espacio, ahora se indica si perdió por falta de combustible o por quedarse sin escudo.
  */
 
-// Constantes directas
+// Constantes dciretas
 
 const int   DISTANCIA_AL_ESPACIO    = 100;
 const int   COMBUSTIBLE_MAX         = 40;
@@ -49,9 +49,10 @@ while (distanciaRecorrida < DISTANCIA_AL_ESPACIO && combustibleActual >= COMBUST
     var esZonaEscombros = true;
 
     // Estadísticas del jugador
-    Console.WriteLine("Distancia recorrida: " + distanciaRecorrida + " / " + DISTANCIA_AL_ESPACIO);
-    Console.WriteLine("Escudo actual: " + escudoActual + " / " + ESCUDO_MAX);
-    Console.WriteLine("Combustible actual: " + combustibleActual + " / " + COMBUSTIBLE_MAX);
+    PrintStatistic("Distancia    ", distanciaRecorrida, DISTANCIA_AL_ESPACIO);
+    PrintStatistic("Escudo       ", (int)escudoActual, (int)ESCUDO_MAX);
+    PrintStatistic("Combustible  ", combustibleActual, COMBUSTIBLE_MAX);
+PrintTurn(distanciaRecorrida, DISTANCIA_AL_ESPACIO, esZonaEscombros, esZonaCalma);
 
 
     // Selección de la acción del jugador
@@ -189,3 +190,85 @@ else if (escudoActual <= 0)
 {
     Console.WriteLine("¡Tu escudo se ha agotado! Has perdido.");
 }
+
+return;
+
+void PrintStatistic(string prefix, int value, int maxValue) {
+    var (filledBar, emptyBar) = ProgressBar(value, maxValue);
+    var (textColor, bgColor)  = ColorGradient(value, maxValue);
+
+    Console.ResetColor();
+    Console.Write($"{prefix} [");
+    Console.BackgroundColor = bgColor;
+    Console.ForegroundColor = textColor;
+    Console.Write($"{filledBar}{emptyBar}");
+    Console.ResetColor();
+    Console.Write($"] {value}/{maxValue}");
+    Console.WriteLine();
+}
+
+void PrintTurn(int height, int maxHeight, bool debrisZone, bool calmZone, int maxRows = 10, int maxCols = 20) {
+    Console.WriteLine("=========================");
+
+    var shipRow = (int)Math.Round((float)height / maxHeight * maxRows);
+
+    for (var row = maxRows; row >= 0; row--)
+    {
+        var lane = GetSpaceLane(row == shipRow, debrisZone, calmZone, maxCols);
+        Console.WriteLine(lane);
+    }
+
+    Console.WriteLine("=========================");
+}
+
+(ConsoleColor, ConsoleColor) ColorGradient(int value, int maxValue) {
+    var percentage = (float)value / maxValue;
+    return percentage switch
+           {
+               < 0.5f  => (ConsoleColor.Red, ConsoleColor.Black),
+               < 0.75f => (ConsoleColor.Yellow, ConsoleColor.Black),
+               _       => (ConsoleColor.Green, ConsoleColor.Black)
+           };
+}
+
+(string, string) ProgressBar(int value, int maxValue, int barLength = 20) {
+    var percentage   = (float)value / maxValue;
+    var filledLength = (int)(barLength * percentage);
+    var emptyLength  = barLength - filledLength;
+
+    var filledBar = new string('█', filledLength);
+    var emptyBar  = new string('░', emptyLength);
+
+    return (filledBar, emptyBar);
+}
+
+string GetSpaceLane(bool ship, bool debris, bool calm, int maxCols) {
+    if (!ship) return "| " + new string('.', maxCols - 2);
+
+    var lane = new char[maxCols];
+    lane[0] = '|';
+    lane[1] = ' ';
+
+    for (var i = 2; i < maxCols; i++)
+    {
+        if (i == maxCols / 2)
+        {
+            lane[i] = '^';
+        }
+        else if (debris && i % 2 == 0)
+        {
+            lane[i] = 'x';
+        }
+        else if (calm && i % 2 == 0)
+        {
+            lane[i] = '~';
+        }
+        else
+        {
+            lane[i] = ' ';
+        }
+    }
+
+    return new string(lane);
+}
+
