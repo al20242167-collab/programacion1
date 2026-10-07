@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nave", "nave\nave.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "codigo del profe dani", "codigo del profe dani\codigo del profe dani.csproj", "{1A742CD3-65B7-4F4C-9A5B-DB4B176879A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tarea", "tarea\tarea.csproj", "{882DB5BF-7E94-4352-878B-3CCBE3EB22EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{1A742CD3-65B7-4F4C-9A5B-DB4B176879A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A742CD3-65B7-4F4C-9A5B-DB4B176879A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A742CD3-65B7-4F4C-9A5B-DB4B176879A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882DB5BF-7E94-4352-878B-3CCBE3EB22EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882DB5BF-7E94-4352-878B-3CCBE3EB22EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882DB5BF-7E94-4352-878B-3CCBE3EB22EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882DB5BF-7E94-4352-878B-3CCBE3EB22EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
