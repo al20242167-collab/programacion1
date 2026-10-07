@@ -1,4 +1,6 @@
-﻿Dictionary<string, int> items = new()
+﻿using System.ComponentModel;
+
+Dictionary<string, int> items = new()
                                 {
                                     { "Espada", 25 },
                                     { "Arco", 15 },
@@ -8,6 +10,8 @@
 Console.WriteLine(items["Espada"]);
 Console.WriteLine(items["Hacha"]);
 
+
+
 items["Arco"] = 20;
 
 Console.WriteLine(items["Arco"]);
@@ -16,9 +20,31 @@ if(items.ContainsKey("Hoz")) {
     Console.WriteLine("DMG Hoz: " + items["Hoz"]);
 }
 
+if(items.TryGetValue("Hoz", out int dmgHoz))
+{
+    Console.WriteLine($"DMG hacha: {dmgHoz}");
+}
+
 if(items.TryGetValue("Hacha", out int dmg))
 {
     Console.WriteLine($"DMG hacha: {dmg}");
 }
 
 Console.WriteLine(items.Count);
+
+if (items.ContainsKey("Arco"))
+{
+    Console.WriteLine("DMG Arco: " + items["Arco"]);
+}
+
+if (items.TryGetValue("Cuchillo", out int dmgCuchillo))
+{
+    Console.WriteLine($"DMG Cuchillo: {dmg}");
+}
+else
+{
+    items.Add( "Cuchillo", 10);
+}
+
+items.Clear();
+items.Add("Espda", 25);
